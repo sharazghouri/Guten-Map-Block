@@ -37,4 +37,3 @@ if ('production' === NODE_ENV) {
 }
 
 module.exports = webpackConfig;
-
