@@ -41,7 +41,7 @@ function google_map_js(){
 
 //enquening script to maim wp_enqueue_script hook for access for both admin and  site
 //https://maps.googleapis.com/maps/api/js?key=AIzaSyAjyDspiPfzEfjRSS5fQzm-3jHFjHxeXB4&callback=initMap"
- wp_enqueue_script('map_block_google_js', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAjyDspiPfzEfjRSS5fQzm-3jHFjHxeXB4',  array(), MAP_BLOCK_VERSION  );
+ wp_enqueue_script('map_block_google_js', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAjyDspiPfzEfjRSS5fQzm-3jHFjHxeXB4&libraries=places',  array(), MAP_BLOCK_VERSION  );
 
 }
 add_action( 'enqueue_block_assets', 'google_map_js');
