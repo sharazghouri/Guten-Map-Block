@@ -40,9 +40,12 @@ initMap();
 }
    render(){
 
-     return( <div id={ this.props.id } style={ {height : '300px'}}>
+     return( [
+       !! this.props.focus && ( <InspectorControls>
 
-     </div> );
+
+     </InspectorControls>) ,
+      <div id={ this.props.id } style={ {height : '300px'}}></div> ] );
        }
 
 
