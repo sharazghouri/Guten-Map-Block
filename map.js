@@ -8,7 +8,9 @@ import classnames from 'classnames';
  */
 const { __ } = wp.i18n;
 const { Component } = wp.element;
+const {  InspectorControls, BlockDescription } = wp.blocks;
 
+const { PanelBody,PanelRow }
 /**
  * Create an  map field Component
  */
