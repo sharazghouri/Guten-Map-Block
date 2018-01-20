@@ -5,17 +5,19 @@ import css from  './style.css';
 import Map from './map';
 
 const { __ } = wp.i18n;
-const {
-    registerBlockType,
-    Editable } = wp.blocks;
-    const PLUGIN_TEXTDOMAIN = 'map-block-guten';
+const { registerBlockType, Editable } = wp.blocks;
+const {  InspectorControls, BlockControls, BlockDescription } = wp.blocks;
 
- registerBlockType( 'map-block/guten',{
-    //title of the Block
+const { PanelBody,PanelRow } = wp.components;
+
+const PLUGIN_TEXTDOMAIN = 'map-block-guten';
+
+registerBlockType( 'map-block/guten',{
+  //title of the Block
   title : __( 'Map',  PLUGIN_TEXTDOMAIN ),
   // description of the block ( OPTIONAL )
   description : __('The Map Block give function to add maps in Post.' , PLUGIN_TEXTDOMAIN),
- //icon for block
+  //icon for block
   icon : 'location-alt',
   //category
   category: 'common',
@@ -25,35 +27,43 @@ const {
     __( 'way', PLUGIN_TEXTDOMAIN ),
   ],
 
-
-
   //attributres
 
-  attributres:{
-
-      address:{
-        type:'string'
+    attributes: {
+      address: {
+        type: 'string',
+        default:  'sialkot',
+          source: 'attribute',
+          selector: '.mymap',
+          attribute: 'data-address'
       }
 
   },
 
   supports:{
-   html: false,
-
-  },
+    html: false,
+    },
 
   edit: props=>{
 
-    return( <Map
-             id='map'
+    console.log( "edit");
+    const onAddressChange = ( value ) => {
 
-    />);
+    props.setAttributes( { address: value } );
 
-  },
-  save:props=>{
+  }
 
+    return( [
 
-return( [ <Map id='map'  />,<script dangerouslySetInnerHTML={ { __html : 'alert( "fds" );'}}></script>]);
+      <Map id='map'
+        addressValue={ props.attributes.address }
+           { ...{ onAddressChange  }  } /> ])
+    },
+    save:props=>{
+        console.log( "save");
+
+      return( [  <div   class="mymap" style={ {height : "200px" }} data-address={ props.attributes.address}  class={ props.className } ></div>]);
+
   }
 
 
@@ -62,5 +72,5 @@ return( [ <Map id='map'  />,<script dangerouslySetInnerHTML={ { __html : 'alert(
 
 
 
-});
-//
+  });
+  //
